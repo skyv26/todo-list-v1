@@ -6,25 +6,25 @@ const refreshButton = document.querySelector('.todo__header-refreshButton');
 const todosTaskList = [
   {
     description: 'Morning walk at 5AM with brother',
-    completed:  false,
+    completed: false,
     index: 1,
   },
   {
     description: 'Go to GYM for weight loss',
-    completed:  false,
+    completed: false,
     index: 2,
   },
   {
     description: 'Buy some groceries from city',
-    completed:  false,
+    completed: false,
     index: 3,
   },
 ];
 
 todosTaskList.forEach((each) => {
-  let htmlTemplateLiteral = `
+  const htmlTemplateLiteral = `
     <li class="space todo__list" id="list-${each.index}" draggable="true" onclick="todoListHandler(event, this)">
-      <input class="todo__list-status" type="checkbox" name="todo__task_checkbox" ${each.completed ? `checked` : ''} id="todo__task_checkbox-${each.index}" aria-label="mark the task as completed or uncompleted" >
+      <input class="todo__list-status" type="checkbox" name="todo__task_checkbox" ${each.completed ? 'checked' : ''} id="todo__task_checkbox-${each.index}" aria-label="mark the task as completed or uncompleted" >
       <label for="task-${each.index}" class="todo__task-placeholder" onclick="todoEditHandler(this)">
         <span class="strike">${each.description}</span>
         <input class="update-todo__input" type="text" name="task-${each.index}" id="task-${each.index}" >
@@ -34,9 +34,9 @@ todosTaskList.forEach((each) => {
       </div>
     </li>
   `;
-  listContainer.insertAdjacentHTML('beforeend',htmlTemplateLiteral);
+  listContainer.insertAdjacentHTML('beforeend', htmlTemplateLiteral);
 });
 
-refreshButton.addEventListener('click', (e) => {
-  location.reload();
-})
+refreshButton.addEventListener('click', () => {
+  window.location.reload();
+});

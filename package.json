@@ -19,8 +19,12 @@
   },
   "homepage": "https://github.com/skyv26/todo-list-v1#readme",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
     "hint": "^7.1.1",
     "html-loader": "^4.1.0",

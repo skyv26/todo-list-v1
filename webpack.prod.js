@@ -1,11 +1,10 @@
-const common = require('./webpack.common');
 const { merge } = require('webpack-merge');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
-  mode: "production",
+  mode: 'production',
   devtool: false,
   output: {
     filename: '[name].[contenthash].bundle.js',
