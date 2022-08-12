@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  &::after,&::before {
+    @extend *;
+  }
+}
+
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  align-content: flex-start;
+  background-color: lightblue;
+}
+
+%d-flex {
+  display: flex;
+}
+
+.space {
+  padding: 0.75rem 0.6rem 0.75rem 0.6rem;
+}
+
+
+#root {
+  width: 60%;
+  margin: auto;
+  margin-top: 10rem;
+  border: thin solid rgb(152, 152, 152);
+}
+
+ul {
+  list-style: none;
+}
+
+.space {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+// Header Style
+
+.todo__header {
+  @extend %d-flex;
+  background-color: white;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: thin solid rgb(224, 224, 224);
+ 
+  &-logo {
+    font-size: 2.5rem;
+  }
+
+  &-refreshButton {
+    @extend %d-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: gray
+  }
+}
+
+.todo__main {
+  @extend %d-flex;
+  width: inherit;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  
+  &-form {
+    @extend %d-flex;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    padding: 0 1rem;
+
+    &_taskInput {
+      height: 5rem;
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 1.6rem;
+      background-color: transparent;
+      font-style: italic;
+    }
+
+    &_submitButton {
+      position: absolute;
+      font-size: 1.6rem;
+      border: none;
+      height: inherit;
+      width: max;
+      background: transparent;
+      right: 1rem;
+      top: 50%;
+      color: rgb(153, 153, 153);
+      padding: 0 0.4rem;
+      transform: translate(0, -50%) rotate(90deg);
+      cursor: pointer;
+    }
+  }
+
+  &-taskContainer {
+    @extend %d-flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+     
+    align-items: flex-start;
+
+    .todo__list {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-content: center;
+      font-size: 1.75rem;
+      gap: 1rem;
+      border-top: thin solid rgb(224, 224, 224);
+      font-family: 'Courier New', Courier, monospace;
+      background-color: white;
+
+      &-status {
+        width: 1.6rem;
+      }
+      .todo__task-placeholder {
+        position: relative;
+        font-family: inherit;
+        height: 2.75rem;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-size: 1.4rem;
+
+        .strike {
+          vertical-align: middle;
+        }
+
+        .update-todo__input {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          font-size: inherit;
+          width: inherit;
+          height: inherit;
+          font-family: inherit;;
+          transform: translate(0, -50%);
+          // background-color: var(--common-bg);
+          border: none;
+          outline: none;
+          display: none;
+        }
+      }
+      .todo__mode {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: move;
+        .fontawesome-icon {
+          padding: 0 0.1rem;
+          color: lightgray;
+        }
+      }
+    }
+  }
+}
