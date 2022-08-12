@@ -1,6 +1,7 @@
 import './index.scss';
 import App from './App';
 
+App();
 const refreshButton = document.querySelector('.todo__header-refreshButton');
 
 const todosTaskList = [
