@@ -1,12 +1,10 @@
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  &::after,&::before {
-    @extend *;
-  }
 }
-
 
 html {
   font-size: 62.5%;
@@ -21,14 +19,13 @@ body {
   background-color: lightblue;
 }
 
-%d-flex {
+.space {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.d-flex {
   display: flex;
 }
-
-.space {
-  padding: 0.75rem 0.6rem 0.75rem 0.6rem;
-}
-
 
 #root {
   width: 60%;
@@ -41,44 +38,43 @@ ul {
   list-style: none;
 }
 
-.space {
-  padding: 1rem 1rem 1rem 1rem;
-}
-
 // Header Style
 
 .todo__header {
-  @extend %d-flex;
+  @extend .d-flex;
+
   background-color: white;
   justify-content: space-between;
   width: 100%;
   border-bottom: thin solid rgb(224, 224, 224);
- 
+
   &-logo {
     font-size: 2.5rem;
   }
 
   &-refreshButton {
-    @extend %d-flex;
+    @extend .d-flex;
+
     justify-content: center;
     align-items: center;
     font-size: 1.75rem;
     border: none;
     background: transparent;
     cursor: pointer;
-    color: gray
+    color: gray;
   }
 }
 
 .todo__main {
-  @extend %d-flex;
-  width: inherit;
+  @extend .d-flex;
+
   flex-direction: column;
   width: 100%;
   align-items: flex-start;
-  
+
   &-form {
-    @extend %d-flex;
+    @extend .d-flex;
+
     position: relative;
     width: 100%;
     background-color: white;
@@ -99,7 +95,6 @@ ul {
       font-size: 1.6rem;
       border: none;
       height: inherit;
-      width: max;
       background: transparent;
       right: 1rem;
       top: 50%;
@@ -111,11 +106,11 @@ ul {
   }
 
   &-taskContainer {
-    @extend %d-flex;
+    @extend .d-flex;
+
     flex-direction: column;
     width: 100%;
     background-color: white;
-     
     align-items: flex-start;
 
     .todo__list {
@@ -132,6 +127,7 @@ ul {
       &-status {
         width: 1.6rem;
       }
+
       .todo__task-placeholder {
         position: relative;
         font-family: inherit;
@@ -152,7 +148,7 @@ ul {
           font-size: inherit;
           width: inherit;
           height: inherit;
-          font-family: inherit;;
+          font-family: inherit;
           transform: translate(0, -50%);
           // background-color: var(--common-bg);
           border: none;
@@ -160,11 +156,13 @@ ul {
           display: none;
         }
       }
+
       .todo__mode {
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: move;
+
         .fontawesome-icon {
           padding: 0 0.1rem;
           color: lightgray;
