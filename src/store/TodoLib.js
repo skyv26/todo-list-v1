@@ -20,17 +20,17 @@ const TodoLib = () => {
     addTodo(todoString) {
       this.todoListArray.unshift(this.createTodoObj(todoString));
       this.setLocalStorageData(this.todoListArray);
-      const temp = this.map((each, indx) => {
+      const temp = this.todoListArray.map((each, indx) => {
         each.index = indx + 1;
         return each;
       });
       this.todoListArray = temp;
-      this.todoCollector.sort((a, b) => a.index - b.index);
-      this.listSize = this.todoCollector.length;
+      this.todoListArray.sort((a, b) => a.index - b.index);
+      this.listSize = this.todoListArray.length;
     }
   }
 
   return new Todo();
 }
 
-export default TodoLib;
+export default TodoLib();
