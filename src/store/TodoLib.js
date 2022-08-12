@@ -11,6 +11,11 @@ const TodoLib = () => {
     updateTodo(todoId, dataObj = {}, removable = true) {
       if (removable) {
         this.todoListArray = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
+        const temp = this.todoListArray.map((each, indx) => {
+          each.index = indx + 1;
+          return each;
+        });
+        this.todoListArray = temp;
       } else {
         const temp = this.todoListArray.filter((eachTodo) => {
           if (eachTodo.index === todoId) {
@@ -46,6 +51,6 @@ const TodoLib = () => {
   }
 
   return new Todo();
-}
+};
 
 export default TodoLib();

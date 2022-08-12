@@ -3,8 +3,6 @@ import ListWrapper from './components/main/ListWrapper';
 
 const form = document.querySelector('.todo__main-form');
 const listContainer = document.querySelector('.todo__main-taskContainer');
-const getAllCheckBox = document.querySelectorAll('.todo__list-status');
-// const getAllInputElements = document.querySelectorAll('.update-todo__input');
 
 const App = () => {
   form.addEventListener('submit', function formHandler(e) {
