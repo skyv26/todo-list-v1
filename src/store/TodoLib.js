@@ -8,6 +8,23 @@ const TodoLib = () => {
       this.listSize = 0;
     }
 
+    updateTodo(todoId, dataObj = {}, removable = true) {
+      if (removable) {
+        this.todoListArray = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
+      } else {
+        const temp = this.todoListArray.filter((eachTodo) => {
+          if (eachTodo.index === todoId) {
+            Object.keys(dataObj).forEach((key) => {
+              eachTodo[key] = dataObj[key];
+            });
+          }
+          return eachTodo;
+        });
+        this.todoListArray = temp;
+      }
+      this.setLocalStorageData(this.todoListArray);
+    }
+
     getUniqueId() {
       return this.todoListArray.length + 1;
     }

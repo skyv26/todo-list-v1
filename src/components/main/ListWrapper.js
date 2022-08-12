@@ -4,6 +4,7 @@ import Label from '../elements/Label';
 import Span from '../elements/Span';
 import Wrapper from '../elements/Wrapper';
 import FontAwsome from '../elements/FontAwsome';
+import TodoLib from '../../store/TodoLib';
 
 const ListWrapper = (props) => {
   const li = List({
@@ -18,6 +19,9 @@ const ListWrapper = (props) => {
     checked: props.completed,
     id: `todo__task_checkbox-${props.index}`,
     ariaLabel: 'mark the task as completed or uncompleted',
+    onchange: () => {
+      TodoLib.updateTodo(props.index, { completed: checkbox.checked }, false);
+    },
   });
 
   const label = Label({

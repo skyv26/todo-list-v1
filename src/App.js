@@ -4,6 +4,7 @@ import ListWrapper from './components/main/ListWrapper';
 const form = document.querySelector('.todo__main-form');
 const listContainer = document.querySelector('.todo__main-taskContainer');
 const getAllCheckBox = document.querySelectorAll('.todo__list-status');
+// const getAllInputElements = document.querySelectorAll('.update-todo__input');
 
 const App = () => {
   form.addEventListener('submit', function formHandler(e) {
@@ -22,20 +23,6 @@ const App = () => {
       listContainer.appendChild(ListWrapper(each));
     });
   }
-
-  getAllCheckBox.forEach((each) => {
-    each.addEventListener('change', (e) => {
-      const newObj = {};
-      if (e.target.checked) {
-        newObj.completed = true;
-        each.checked = true;
-      } else {
-        newObj.completed = false;
-        each.checked = false;
-      }
-      this.update(newObj, Number(each.id.split('-')[1]));
-    });
-  });
 };
 
 export default App();
