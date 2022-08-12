@@ -5,30 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List | v1</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <div id="root">
-    <header class="todo__header">
+    <header class="space todo__header">
       <h1 class="todo__header-logo">TODO</h1>
-      <button class="todo__header-refreshButton">@</button>
+      <p class="todo__header-refreshButton"><i class="fa-solid fa-arrows-rotate"></i></p>
     </header>
     <main class="todo__main">
-      <form class="todo__main-form">
+      <form class="space todo__main-form ">
         <input type="text" class="todo__main-form_taskInput" placeholder="Add to your list..." aria-label="please enter your today's todo item">
-        <button type="submit" class="todo__main-form-submitButton">+</button>
+        <button type="submit" class="todo__main-form_submitButton"><i class="fa-solid fa-turn-down"></i></button>
       </form>
-      <ul class="todo__main-taskContainer">
-        <li class="todo__list" id="list-${each.index}" draggable="true" onclick="todoListHandler(event, this)">
-          <input class="todo__list-status" type="checkbox" name="todo__task_checkbox" ${each.completed ? `checked` : ''} id="todo__task_checkbox-${each.index}" aria-label="mark the task as completed or uncompleted" >
-          <label for="task-${each.index}" class="todo__task-placeholder" onclick="todoEditHandler(this)">
-            <span class="strike">Aakash</span>
-            <input class="update-todo__input" type="text" name="task-${each.index}" id="task-${each.index}" >
-          </label>
-          <div class="todo__mode">
-            <i class="fontawesome-icon fa-solid fa-ellipsis-vertical ellipse" id="todo__mode-${each.index}"></i>
-          </div>
-        </li>
-      </ul>
+      <ul class="todo__main-taskContainer"></ul>
     </main>
   </div>
 </body>
