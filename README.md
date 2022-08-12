@@ -1,19 +1,18 @@
 
 # Project Name
 
-> Awesome Book project is a project in order to practice and learn the things more about on JavaScript. It is in its initial state and as the day will pass more feature will be added to this project later.
+> This is basic version of todoList.
 
 
 ## Built With
 
 - Major languages: JavaScript (ES6)
 - Frameworks: No framework only Vanilla JS
-- Technologies used: HTML, CSS and JavaScript
-- Luxon Library for Date and Time
+- Technologies used: HTML, CSS, JavaScript, WebPack,
 
 ## Live Demo
 
-[click here for demo](https://skyv26.github.io/awesome-book-modular-es6)
+[click here for demo]()
 
 
 ## Getting Started
@@ -61,4 +60,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.
