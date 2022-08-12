@@ -4,13 +4,12 @@ const TodoLib = () => {
   class Todo extends LocalStore {
     constructor() {
       super();
-      this.todoListArray = [];
+      this.todoListArray = this.getLocalStorageData() ?? [];
       this.listSize = 0;
     }
 
     getUniqueId() {
-      this.listSize += 1;
-      return this.listSize;
+      return this.todoListArray.length + 1;
     }
 
     createTodoObj(text) {
@@ -18,7 +17,7 @@ const TodoLib = () => {
     }
 
     addTodo(todoString) {
-      this.todoListArray.unshift(this.createTodoObj(todoString));
+      this.todoListArray.push(this.createTodoObj(todoString));
       this.setLocalStorageData(this.todoListArray);
       const temp = this.todoListArray.map((each, indx) => {
         each.index = indx + 1;
@@ -26,7 +25,6 @@ const TodoLib = () => {
       });
       this.todoListArray = temp;
       this.todoListArray.sort((a, b) => a.index - b.index);
-      this.listSize = this.todoListArray.length;
     }
   }
 

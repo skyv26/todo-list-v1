@@ -1,16 +1,20 @@
-class Element {
-  constructor(componentName, className) {
-    this.component = document.createElement(componentName);
-    this.className = className;
-  }
-
-  getComponent(withAriaLabel = false) {
-    this.component.className = this.className;
-    if (withAriaLabel) {
-      this.component.ariaLabel='';
+const Element = (props) => {
+  class ElementComponent {
+    constructor(prop = props) {
+      this.component = document.createElement(prop.component);
     }
-    return this.component;
+
+    getComponent() {
+      delete props.component;
+      Object.keys(props).forEach((key) => {
+        this.component[key] = props[key];
+      });
+      return this.component;
+    }
   }
-}
+  const elem = new ElementComponent(props);
+
+  return elem.getComponent();
+};
 
 export default Element;
