@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-[click here for demo]()
+[coming soon...]()
 
 
 ## Getting Started
@@ -22,6 +22,7 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 - use git clone in order to get the copy this repo. You need to have atleast basic understanding of JavaScript. Use below command
+
   - git clone https://github.com/skyv26/todo-list-v1.git
 
 
