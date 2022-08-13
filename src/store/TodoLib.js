@@ -8,16 +8,23 @@ const TodoLib = () => {
       this.listSize = 0;
     }
 
-    completedTaskDeleteHandler(todoId) {
-      const temp = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
-      this.todoListArray = temp;
+    completedTaskDeleteHandler(completedTaskObj) {
+      let temp;
+      let raw = [...this.todoListArray];
+      completedTaskObj.forEach((eachNum) => {
+        temp = raw.filter((each) => each.index !== eachNum);
+        raw = temp;
+      });
+      this.todoListArray = temp.map((each, indx) => {
+        each.index = indx + 1;
+        return each;
+      });
       this.setLocalStorageData(this.todoListArray);
     }
 
     updateTodo(todoId, dataObj = {}, removable = true) {
       let temp;
       if (removable) {
-        console.log(todoId);
         temp = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
         this.todoListArray = temp.map((each, indx) => {
           each.index = indx + 1;
