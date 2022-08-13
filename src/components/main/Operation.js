@@ -5,8 +5,6 @@ import Wrapper from '../elements/Wrapper';
 import TodoLib from '../../store/TodoLib';
 import ListWrapper from './ListWrapper';
 
-const listContainer = document.querySelector('.todo__main-taskContainer');
-
 const Operation = () => {
   const div = Wrapper({
     className: 'todo__main-OperationalWrapper',
