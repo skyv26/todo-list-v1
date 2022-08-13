@@ -1,3 +1,5 @@
+import Sortable from 'sortablejs';
+
 import TodoLib from './store/TodoLib';
 import ListWrapper from './components/main/ListWrapper';
 import Operation from './components/main/Operation';
@@ -23,6 +25,9 @@ const App = () => {
       listContainer.appendChild(ListWrapper(each));
     });
   }
+
+  const sortable = Sortable.create(listContainer);
+
   const operation = Operation();
   main.appendChild(operation);
 };
