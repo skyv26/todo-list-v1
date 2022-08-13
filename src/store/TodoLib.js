@@ -9,15 +9,16 @@ const TodoLib = () => {
     }
 
     updateTodo(todoId, dataObj = {}, removable = true) {
+      let temp;
       if (removable) {
-        this.todoListArray = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
-        const temp = this.todoListArray.map((each, indx) => {
+        console.log(todoId);
+        temp = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
+        this.todoListArray = temp.map((each, indx) => {
           each.index = indx + 1;
           return each;
         });
-        this.todoListArray = temp;
       } else {
-        const temp = this.todoListArray.filter((eachTodo) => {
+        temp = this.todoListArray.filter((eachTodo) => {
           if (eachTodo.index === todoId) {
             Object.keys(dataObj).forEach((key) => {
               eachTodo[key] = dataObj[key];

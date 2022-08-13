@@ -29,52 +29,9 @@ const ListWrapper = (props) => {
     },
   });
 
-  const label = Label({
-    htmlFor: `task-${props.index}`,
-    className: 'todo__task-placeholder',
-    onclick: () => {
-      const getTaskModeElement = document.querySelector(`#todo__mode-${props.index}`);
-      const childInput = label.children[1];
-      const getAllList = document.querySelectorAll('.todo__list');
-      const getTodoInput = document.querySelectorAll('.update-todo__input');
-      const getAllFontAwesomeIcon = document.querySelectorAll('.fontawesome-icon');
-
-      getAllList.forEach((each) => each.classList.remove('updateMode'));
-      getTodoInput.forEach((each) => each.classList.remove('update'));
-      getAllFontAwesomeIcon.forEach((each) => {
-        each.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
-      });
-      childInput.classList.add('update');
-      childInput.value = label.textContent.trim();
-      childInput.focus();
-      li.classList.add('updateMode');
-      getTaskModeElement.className = 'fontawesome-icon fa-solid fa-trash-can trash';
-      getTaskModeElement.style.cursor = 'pointer';
-    },
-  });
-
   const span = Span({
     className: 'strike uncompleted',
     textContent: `${props.description}`,
-  });
-
-  const textPlaceHolder = Input({
-    type: 'text',
-    className: 'update-todo__input',
-    name: label.htmlFor,
-    id: label.htmlFor,
-    onkeydown: (e) => {
-      const getTaskModeElement = document.querySelector(`#todo__mode-${props.index}`);
-      if (e.key.toLowerCase() === 'enter') {
-        getTaskModeElement.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
-        li.classList.remove('updateMode');
-        textPlaceHolder.classList.remove('update');
-      }
-    },
-    onchange: () => {
-      span.textContent = textPlaceHolder.value;
-      TodoLib.updateTodo(props.index, { description: span.textContent }, false);
-    },
   });
 
   const div = Wrapper({
@@ -86,9 +43,49 @@ const ListWrapper = (props) => {
     id: `todo__mode-${props.index}`,
     onclick: () => {
       if (i.className.includes('trash')) {
+        i.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
         li.remove();
         TodoLib.updateTodo(props.index);
       }
+    },
+  });
+
+  const label = Label({
+    htmlFor: `task-${props.index}`,
+    className: 'todo__task-placeholder',
+    onclick: (e) => {
+      e.preventDefault();
+      const childInput = label.children[1];
+      const getAllList = document.querySelectorAll('.todo__list');
+
+      getAllList.forEach((each) => {
+        each.classList.remove('updateMode');
+        each.lastChild.lastChild.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+      });
+      childInput.classList.add('update');
+      childInput.value = label.textContent.trim();
+      childInput.focus();
+      li.classList.add('updateMode');
+      i.className = 'fontawesome-icon fa-solid fa-trash-can trash';
+      i.style.cursor = 'pointer';
+    },
+  });
+
+  const textPlaceHolder = Input({
+    type: 'text',
+    className: 'update-todo__input',
+    name: label.htmlFor,
+    id: label.htmlFor,
+    onkeydown: (e) => {
+      if (e.key.toLowerCase() === 'enter') {
+        i.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+        li.classList.remove('updateMode');
+        textPlaceHolder.classList.remove('update');
+      }
+    },
+    onchange: () => {
+      span.textContent = textPlaceHolder.value;
+      TodoLib.updateTodo(props.index, { description: span.textContent }, false);
     },
   });
 

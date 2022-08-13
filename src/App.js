@@ -1,8 +1,10 @@
 import TodoLib from './store/TodoLib';
 import ListWrapper from './components/main/ListWrapper';
+import Operation from './components/main/Operation';
 
 const form = document.querySelector('.todo__main-form');
 const listContainer = document.querySelector('.todo__main-taskContainer');
+const main = document.querySelector('.todo__main');
 
 const App = () => {
   form.addEventListener('submit', function formHandler(e) {
@@ -21,6 +23,8 @@ const App = () => {
       listContainer.appendChild(ListWrapper(each));
     });
   }
+
+  main.appendChild(Operation());
 };
 
 export default App;
