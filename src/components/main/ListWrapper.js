@@ -15,29 +15,6 @@ const ListWrapper = (props) => {
     id: `list-${props.index}`,
   });
 
-  const checkbox = Input({
-    className: 'todo__list-status',
-    type: 'checkbox',
-    checked: props.completed,
-    id: `todo__task_checkbox-${props.index}`,
-    ariaLabel: 'mark the task as completed or uncompleted',
-    onchange: () => {
-      if (checkbox.checkbox) {
-        checkbox.classList.add('uncompleted');
-      }
-      TodoLib.updateTodo(props.index, { completed: checkbox.checked }, false);
-    },
-  });
-
-  const span = Span({
-    className: 'strike uncompleted',
-    textContent: `${props.description}`,
-  });
-
-  const div = Wrapper({
-    className: 'todo__mode',
-  });
-
   const i = FontAwsome({
     className: 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse',
     id: `todo__mode-${props.index}`,
@@ -71,6 +48,11 @@ const ListWrapper = (props) => {
     },
   });
 
+  const span = Span({
+    className: 'strike',
+    textContent: `${props.description}`,
+  });
+
   const textPlaceHolder = Input({
     type: 'text',
     className: 'update-todo__input',
@@ -87,6 +69,27 @@ const ListWrapper = (props) => {
       span.textContent = textPlaceHolder.value;
       TodoLib.updateTodo(props.index, { description: span.textContent }, false);
     },
+  });
+
+  const checkbox = Input({
+    className: 'todo__list-status',
+    type: 'checkbox',
+    checked: props.completed,
+    id: `todo__task_checkbox-${props.index}`,
+    ariaLabel: 'mark the task as completed or uncompleted',
+    onchange: () => {
+      if (checkbox.checked) {
+        checkbox.classList.add('uncompleted');
+        i.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+        li.classList.remove('updateMode');
+        textPlaceHolder.classList.remove('update');
+      }
+      TodoLib.updateTodo(props.index, { completed: checkbox.checked }, false);
+    },
+  });
+
+  const div = Wrapper({
+    className: 'todo__mode',
   });
 
   label.append(span, textPlaceHolder);

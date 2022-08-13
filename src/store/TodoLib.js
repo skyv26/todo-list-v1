@@ -8,6 +8,12 @@ const TodoLib = () => {
       this.listSize = 0;
     }
 
+    completedTaskDeleteHandler(todoId) {
+      const temp = this.todoListArray.filter((eachTodo) => eachTodo.index !== todoId);
+      this.todoListArray = temp;
+      this.setLocalStorageData(this.todoListArray);
+    }
+
     updateTodo(todoId, dataObj = {}, removable = true) {
       let temp;
       if (removable) {

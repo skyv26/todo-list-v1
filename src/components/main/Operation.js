@@ -13,13 +13,18 @@ const Operation = () => {
     className: 'todo__main-OperationalWrapper_btn',
     textContent: 'Clear all completed',
     onclick: () => {
+      const listContainer = document.querySelector('.todo__main-taskContainer');
+
+      if (listContainer.children < 1) {
+        return;
+      }
       const getAllCheckBox = document.querySelectorAll('.todo__list-status');
       getAllCheckBox.forEach((each) => {
         if (each.checked) {
           const getId = Number(each.id.split('-')[1]);
           const getList = document.querySelector(`#list-${getId}`);
-          TodoLib.updateTodo(getId);
           getList.remove();
+          TodoLib.completedTaskDeleteHandler(getId);
         }
       });
     },

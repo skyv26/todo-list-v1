@@ -23,8 +23,8 @@ const App = () => {
       listContainer.appendChild(ListWrapper(each));
     });
   }
-
-  main.appendChild(Operation());
+  const operation = Operation();
+  main.appendChild(operation);
 };
 
 export default App;
