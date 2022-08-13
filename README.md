@@ -1,14 +1,14 @@
 
 # TODO List
 
-> This is basic version of todoList and it is on first stage and need to implement some more functionalities.
+> Project is created by using Vanilla JS, but in order to make it more dynamic in behaviour I used webpack and libraries. It is a basic application to record your daily todo-tasks and I have implemented the features like add, delete and update and still there are so many things which need to add into it.
 
 
 ## Built With
 
 - Major languages: JavaScript (ES6)
 - Frameworks: No framework only Vanilla JS
-- Technologies used: HTML, CSS, JavaScript, WebPack,
+- Technologies used: HTML, CSS, JavaScript, WebPack, Sortablejs
 
 ## Live Demo
 
