@@ -26,7 +26,7 @@ const App = () => {
     });
   }
 
-  const sortable = Sortable.create(listContainer);
+  Sortable.create(listContainer);
 
   const operation = Operation();
   main.appendChild(operation);
