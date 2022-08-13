@@ -1,0 +1,22 @@
+.todo__main-OperationalWrapper {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: thin solid rgb(224, 224, 224);
+
+  &_btn {
+    background-color: transparent;
+    border: none;
+    padding: 2rem 0;
+    font-size: 1.6rem;
+    color: rgb(75, 75, 75);
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: tomato;
+    }
+  }
+}

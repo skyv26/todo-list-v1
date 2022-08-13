@@ -15,46 +15,41 @@ const ListWrapper = (props) => {
     id: `list-${props.index}`,
   });
 
-  const checkbox = Input({
-    className: 'todo__list-status',
-    type: 'checkbox',
-    checked: props.completed,
-    id: `todo__task_checkbox-${props.index}`,
-    ariaLabel: 'mark the task as completed or uncompleted',
-    onchange: () => {
-      if (checkbox.checkbox) {
-        checkbox.classList.add('uncompleted');
+  const i = FontAwsome({
+    className: 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse',
+    id: `todo__mode-${props.index}`,
+    onclick: () => {
+      if (i.className.includes('trash')) {
+        i.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+        li.remove();
+        TodoLib.updateTodo(props.index);
       }
-      TodoLib.updateTodo(props.index, { completed: checkbox.checked }, false);
     },
   });
 
   const label = Label({
     htmlFor: `task-${props.index}`,
     className: 'todo__task-placeholder',
-    onclick: () => {
-      const getTaskModeElement = document.querySelector(`#todo__mode-${props.index}`);
+    onclick: (e) => {
+      e.preventDefault();
       const childInput = label.children[1];
       const getAllList = document.querySelectorAll('.todo__list');
-      const getTodoInput = document.querySelectorAll('.update-todo__input');
-      const getAllFontAwesomeIcon = document.querySelectorAll('.fontawesome-icon');
 
-      getAllList.forEach((each) => each.classList.remove('updateMode'));
-      getTodoInput.forEach((each) => each.classList.remove('update'));
-      getAllFontAwesomeIcon.forEach((each) => {
-        each.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+      getAllList.forEach((each) => {
+        each.classList.remove('updateMode');
+        each.lastChild.lastChild.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
       });
       childInput.classList.add('update');
       childInput.value = label.textContent.trim();
       childInput.focus();
       li.classList.add('updateMode');
-      getTaskModeElement.className = 'fontawesome-icon fa-solid fa-trash-can trash';
-      getTaskModeElement.style.cursor = 'pointer';
+      i.className = 'fontawesome-icon fa-solid fa-trash-can trash';
+      i.style.cursor = 'pointer';
     },
   });
 
   const span = Span({
-    className: 'strike uncompleted',
+    className: 'strike',
     textContent: `${props.description}`,
   });
 
@@ -64,9 +59,8 @@ const ListWrapper = (props) => {
     name: label.htmlFor,
     id: label.htmlFor,
     onkeydown: (e) => {
-      const getTaskModeElement = document.querySelector(`#todo__mode-${props.index}`);
       if (e.key.toLowerCase() === 'enter') {
-        getTaskModeElement.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+        i.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
         li.classList.remove('updateMode');
         textPlaceHolder.classList.remove('update');
       }
@@ -77,19 +71,25 @@ const ListWrapper = (props) => {
     },
   });
 
-  const div = Wrapper({
-    className: 'todo__mode',
+  const checkbox = Input({
+    className: 'todo__list-status',
+    type: 'checkbox',
+    checked: props.completed,
+    id: `todo__task_checkbox-${props.index}`,
+    ariaLabel: 'mark the task as completed or uncompleted',
+    onchange: () => {
+      if (checkbox.checked) {
+        checkbox.classList.add('uncompleted');
+        i.className = 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse';
+        li.classList.remove('updateMode');
+        textPlaceHolder.classList.remove('update');
+      }
+      TodoLib.updateTodo(props.index, { completed: checkbox.checked }, false);
+    },
   });
 
-  const i = FontAwsome({
-    className: 'fontawesome-icon fa-solid fa-ellipsis-vertical ellipse',
-    id: `todo__mode-${props.index}`,
-    onclick: () => {
-      if (i.className.includes('trash')) {
-        li.remove();
-        TodoLib.updateTodo(props.index);
-      }
-    },
+  const div = Wrapper({
+    className: 'todo__mode',
   });
 
   label.append(span, textPlaceHolder);
