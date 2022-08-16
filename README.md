@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-[Click Here](https://skyv26.github.io/todo-list-v1/)
+[coming soon...]()
 
 
 ## Getting Started
