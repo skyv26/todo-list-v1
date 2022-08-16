@@ -76,7 +76,7 @@ const ListWrapper = (props) => {
     type: 'checkbox',
     checked: props.completed,
     id: `todo__task_checkbox-${props.index}`,
-    ariaLabel: 'mark the task as completed or uncompleted',
+    ariaLabelledBy: 'mark the task as completed or uncompleted',
     onchange: () => {
       if (checkbox.checked) {
         checkbox.classList.add('uncompleted');
